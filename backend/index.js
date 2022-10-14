@@ -1,12 +1,33 @@
-const express = require("express")
+import mongoose from "mongoose";
+import ClienteModel from "./models/Cliente.js"
 
-const app = express()
+const conexionDB = async() => {
 
-app.use("/", (request, response) => {
-    response.send("Hola mundo desde puerto 4000")
-})
+    try {
+        const urlDB = await mongoose
+            .connect("mongodb://localhost:27017/omegapetshop")
+            .then(() => {
+            console.log("Conexión exitosa a base de datos");
+            })
+        
+    } catch (error) {
+        console.log("Error en la conexion")
+    }
+}
+    
+conexionDB()
 
-app.listen(4000, () => {
-    console.log("Probando desde puerto 4000")
-})
+const cliente5 = {
+    tipoDocumento: "CC",
+    numDocumento: "123458",
+    nombre: "Pepa",
+    apellido: "Paeza",
+    email: "pepepaeza@gmail.com",
+    telefonoContacto: "22222223",
+    password: "000003"
 
+}
+
+ClienteModel.create(cliente5).then((respuesta) => {
+    console.log(`Se insertó el cliente ${respuesta.nombre}`)
+}).catch(error => console.log("No se pudo insertar el cliente"))
