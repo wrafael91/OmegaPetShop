@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const clienteSchema = mongoose.Schema({
     tipoDocumento: String,
@@ -11,4 +11,4 @@ const clienteSchema = mongoose.Schema({
 })
 
 const ClienteModel = mongoose.model("Cliente", clienteSchema)
-export default ClienteModel
+module.exports = ClienteModel

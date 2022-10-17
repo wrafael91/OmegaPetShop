@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import ClienteModel from "./models/Cliente.js"
+const mongoose = require("mongoose");
+const ClienteModel = require("./models/Cliente.js")
 
 const conexionDB = async() => {
 
@@ -20,7 +20,7 @@ conexionDB()
 const cliente5 = {
     tipoDocumento: "CC",
     numDocumento: "123458",
-    nombre: "Pepa",
+    nombre: "Pepita",
     apellido: "Paeza",
     email: "pepepaeza@gmail.com",
     telefonoContacto: "22222223",
