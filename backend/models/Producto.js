@@ -1,7 +1,7 @@
 const {Schema,model} = require("mongoose")
 
 //1. Crear Schema 
-const productoSchema = Schema({
+const productoSchema = new Schema({
     codigo : {type : String, unique : true},
     marca : String,
     precio : {type : String, require : [true, "El precio del producto es obligatorio"]},

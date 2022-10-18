@@ -5,4 +5,5 @@ const conexionDB = () => { mongoose.connect("mongodb://localhost:27017/OmegaPetS
   .then(() => {console.log("Se ha conectado a la base de datos")})
   .catch(() => {console.log("No se pudo establecer una conexión con la base de datos")})
 }
-  module.exports = conexionDB
+
+module.exports = conexionDB

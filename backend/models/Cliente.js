@@ -1,7 +1,8 @@
-const Mongoose = require("mongoose")
+//const Mongoose = require("mongoose")
+const {Schema, model} = require("mongoose")
 
 //1.Crear Schema
-const cliente = {
+ const clienteSchema = new Schema({
     nombre : String,
     apellido : String,
     numDocumento : String,
@@ -9,12 +10,10 @@ const cliente = {
     email : String,
     telefonoContacto : String,
     contrasena : String
-  }
-
- const clienteSchema = Mongoose.Schema(cliente)
+  })
 
 //2. Crear modelo (Permite hacer CRUD)
-const ClienteModel = mongoose.model( "cliente", clienteSchema )
+const ClienteModel = model( "cliente", clienteSchema )
 
 //3. Exporto para usarlo en cualquier parte del proyectoS
 module.exports = ClienteModel
