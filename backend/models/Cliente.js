@@ -1,14 +1,20 @@
-const mongoose = require("mongoose");
+const Mongoose = require("mongoose")
 
-const clienteSchema = mongoose.Schema({
-    tipoDocumento: String,
-    numDocumento: String,
-    nombre: String,
-    apellido: String,
-    email: String,
-    telefonoContacto: String,
-    password: String
-})
+//1.Crear Schema
+const cliente = {
+    nombre : String,
+    apellido : String,
+    numDocumento : String,
+    tipoDocumento : String,
+    email : String,
+    telefonoContacto : String,
+    contrasena : String
+  }
 
-const ClienteModel = mongoose.model("Cliente", clienteSchema)
+ const clienteSchema = Mongoose.Schema(cliente)
+
+//2. Crear modelo (Permite hacer CRUD)
+const ClienteModel = mongoose.model( "cliente", clienteSchema )
+
+//3. Exporto para usarlo en cualquier parte del proyectoS
 module.exports = ClienteModel
