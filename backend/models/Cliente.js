@@ -1,3 +1,5 @@
+/* Relacion: Cliente se relacion con producto de */
+
 //const Mongoose = require("mongoose")
 const {Schema, model} = require("mongoose")
 
