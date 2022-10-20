@@ -1,1 +1,2 @@
-const clienteModel = require("./models/Cliente")
+const Server = require("./config/server")
+const server = new Server()
