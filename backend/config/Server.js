@@ -1,19 +1,26 @@
 const express = require("express")
+const crearCliente = require("../controllers/cliente")
+const conexionDB = require("./conexionDB")
 
-class Server{
-
+class Server {
     constructor(){
-        this.app=express()
-        this.app.use( express.json())
-        this.app.listen(3000, () => { console.log("Se esta ejecutando el backend en el puesto "+3000)})
+        this.port = 3000
+        this.app = express()
+        this.app.listen(this.port, () => {
+            console.log(`escuchando en puerto ${this.port}`)
+        })
+        this.middleware()
         this.routes()
+        conexionDB()
     }
 
     routes(){
-
-
+        this.app.post("/usuario", crearCliente)
     }
-
+    
+    middleware(){
+        this.app.use(express.json())
+    }
 }
 
 module.exports = Server
