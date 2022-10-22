@@ -1,5 +1,6 @@
 const express = require("express")
-const crearCliente = require("../controllers/cliente")
+// const crearCliente = require("../controllers/cliente")
+const routerCliente = require("../routes/cliente")
 const conexionDB = require("./conexionDB")
 
 class Server {
@@ -15,7 +16,7 @@ class Server {
     }
 
     routes(){
-        this.app.post("/usuario", crearCliente)
+        this.app.use("/cliente", routerCliente)
     }
     
     middleware(){

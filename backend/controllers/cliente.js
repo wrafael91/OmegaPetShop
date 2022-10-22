@@ -1,18 +1,37 @@
-const express = require("express")
+const {request, response} = require("express")
 const ClienteModel = require("../models/Cliente")
+const {hashSync, genSaltSync} = require("bcryptjs")
 
-async function crearCliente(request = express.request, response = express.response){
-    const {numDocumento} = request.body
+async function crearCliente(req = request, res = response){
+    const {numDocumento, contrasena} = req.body
     const clienteEncontrado = await ClienteModel.findOne({numDocumento: numDocumento})
     
+    //Validación
     if(clienteEncontrado){
-        response.send({msg: "El cliente ya existe"})
+        res.status(400).send({msg: "El cliente ya existe"})
     } else {
-        ClienteModel.create(request.body)
-            .then((clienteEncontrado) => {response.send({msg: "Se creó el cliente"})})
-            .catch(() => response.send({msg: "Error al crear el cliente"}))
+        //El cliente no existe, entonces se crea
+
+        //Encriptar contraseña
+        const passwordEncrypted = hashSync(contrasena, genSaltSync())
+        req.body.contrasena = passwordEncrypted
+
+        ClienteModel.create(req.body)
+            .then((clienteEncontrado) => {res.send({msg: "Se creó el cliente"})})
+            .catch(() => res.send({msg: "Error al crear el cliente"}))
     }
-    console.log(request.body)
+    console.log(req.body)
 }
 
-module.exports = crearCliente
+async function getCliente(req, res){
+    const {id, email, numDocumento} = req.query
+    if(id || email || numDocumento){
+        const cliente = await ClienteModel.findOne({$or: [{_id:id},{email},{numDocumento}]})
+        return res.send(cliente)
+    } else {
+        return res.send({msg: "No se encontró registro"})
+    }
+}
+
+
+module.exports = {crearCliente, getCliente}
