@@ -4,6 +4,6 @@ const {crearCliente, getCliente} = require("../controllers/cliente")
 const routerCliente = Router()
 
 routerCliente.post("/creacion-cliente", crearCliente)
-routerCliente.get("/:id", getCliente)
+routerCliente.get("", getCliente)
 
 module.exports = routerCliente

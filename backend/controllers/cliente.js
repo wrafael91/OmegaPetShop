@@ -24,13 +24,9 @@ async function crearCliente(req = request, res = response){
 }
 
 async function getCliente(req, res){
-    const {id, email, numDocumento} = req.query
-    if(id || email || numDocumento){
-        const cliente = await ClienteModel.findOne({$or: [{_id:id},{email},{numDocumento}]})
-        return res.send(cliente)
-    } else {
-        return res.send({msg: "No se encontró registro"})
-    }
+    const {id} = req.query
+    const cliente = await ClienteModel.findById(id)
+    res.send(cliente)
 }
 
 
