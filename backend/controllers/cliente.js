@@ -23,11 +23,22 @@ async function crearCliente(req = request, res = response){
     console.log(req.body)
 }
 
-async function getCliente(req, res){
+async function getCliente(req = request, res = response){
     const {id} = req.query
     const cliente = await ClienteModel.findById(id)
     res.send(cliente)
 }
 
 
-module.exports = {crearCliente, getCliente}
+async function modificarCliente(req = request, res = response){
+    const {_id, contrasena, ...cliente} = req.body
+
+    if(contrasena){
+        const contrasenaEncriptada = hashSync(contrasena, genSaltSync())
+        cliente.contrasena = contrasenaEncriptada
+    }
+    const clienteModificado = await ClienteModel.findByIdAndUpdate(_id, cliente)
+    res.send(clienteModificado)
+}
+
+module.exports = {crearCliente, getCliente, modificarCliente}
