@@ -41,4 +41,10 @@ async function modificarCliente(req = request, res = response){
     res.send(clienteModificado)
 }
 
-module.exports = {crearCliente, getCliente, modificarCliente}
+async function borrarCliente(req = request, res = response){
+    const {_id} = req.body
+    const clienteBorrado = await ClienteModel.findByIdAndDelete(_id)
+    res.send(clienteBorrado)
+}
+
+module.exports = {crearCliente, getCliente, modificarCliente, borrarCliente}
