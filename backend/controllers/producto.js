@@ -2,7 +2,7 @@ const { request } = require("express");
 const ProductoModel = require("../models/producto");
 const path = require("path")
 
-function guardarImagen(req, res){
+async function guardarImagen(req = request, res = response){
 
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).json({ mensaje: "No se encontro el archivo" })
