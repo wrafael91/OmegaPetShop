@@ -39,6 +39,7 @@ async function modificarCliente(req = request, res = response){
     }
     const clienteModificado = await ClienteModel.findByIdAndUpdate(_id, cliente)
     res.send(clienteModificado)
+    console.log(clienteModificado)
 }
 
 async function borrarCliente(req = request, res = response){
