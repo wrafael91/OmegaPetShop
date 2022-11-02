@@ -4,6 +4,13 @@ const path = require("path")
 
 async function guardarImagen(req = request, res = response){
 
+  const {productoid} = req.query
+
+  //Get del producto
+  const producto = await ProductoModel.findById(productoid)
+
+
+
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).json({ mensaje: "No se encontro el archivo" })
   }
@@ -15,7 +22,9 @@ async function guardarImagen(req = request, res = response){
   // Usa el metodo mv() para colocar el archivo en cualquier parte del backend
   archivo.mv(rutaDeCarga, (error) => {
     if (error) return res.status(500).send(error)
-
+    //carga el archivo
+    producto.imagen = archivo.name
+    producto.save()
     res.send("Archivo cargado corectamente")
   })
 
