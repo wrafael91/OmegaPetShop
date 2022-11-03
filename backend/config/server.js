@@ -4,6 +4,7 @@ const routerCliente = require("../routes/cliente")
 const fileUpload = require("express-fileupload")
 const routerProducto = require("../routes/producto")
 const conexionDB = require("./conexionDB")
+const routerAuth = require("../routes/auth")
 
 class Server {
     constructor(){
@@ -20,6 +21,8 @@ class Server {
     routes(){
         this.app.use("/cliente", routerCliente)
         this.app.use("/producto", routerProducto)
+        this.app.use("/auth", routerAuth)
+
 
     }
     
