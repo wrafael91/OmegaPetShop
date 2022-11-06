@@ -1,5 +1,6 @@
 const { request } = require("express");
 const ProductoModel = require("../models/producto");
+const {verify} = require("jsonwebtoken")
 const path = require("path")
 
 async function guardarImagen(req = request, res = response){
@@ -31,9 +32,11 @@ async function guardarImagen(req = request, res = response){
 }
 
 async function guardarProducto(req = request, res = response){
-    const producto = await new ProductoModel(req.body)
-    producto.save()
-    res.send({producto, mensaje: "Se creó el producto"})
+    
+  const producto = new ProductoModel(req.body)
+  await producto.save()
+  res.send({producto, mensaje: "Se creó el producto"})
+
 }
 
 function verImagen(req = request, res = response){
