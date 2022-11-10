@@ -5,10 +5,11 @@ const fileUpload = require("express-fileupload")
 const routerProducto = require("../routes/producto")
 const conexionDB = require("./conexionDB")
 const routerAuth = require("../routes/auth")
+const dotenv = require("dotenv").config()
 
 class Server {
     constructor(){
-        this.port = 3000
+        this.port = process.env.PORT
         this.app = express()
         this.app.listen(this.port, () => {
             console.log(`escuchando en puerto ${this.port}`)
