@@ -11,7 +11,8 @@ async function login(req = request, res = response){
         //Si las credenciales son validas
         try {
             if(compareSync(contrasena, cliente.contrasena)){
-                sign({id: cliente.id}, "grupo19-tiend4Mascota$", (err, token)=>{
+                //CREAMOS Y ENVIAMOS EL TOKEN
+                sign({id: cliente.id}, "grupo19-tiend4Mascota$", {expiresIn: "5h"}, (err, token)=>{
                     if(err){
                         res.status(500).send({msg: "Hubo un error"})
                     } else {

@@ -1,6 +1,7 @@
 const express = require("express")
 // const crearCliente = require("../controllers/cliente")
 const routerCliente = require("../routes/cliente")
+const cors = require("cors")
 const fileUpload = require("express-fileupload")
 const routerProducto = require("../routes/producto")
 const conexionDB = require("./conexionDB")
@@ -33,7 +34,7 @@ class Server {
             useTempFiles : true,
             tempFileDir : '/tmp/'
           }))
-      
+          this.app.use(cors())
     }
 }
 

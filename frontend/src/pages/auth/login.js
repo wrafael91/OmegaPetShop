@@ -1,12 +1,22 @@
 import React from "react"
+import axios from "axios"
 import "../../shared/navbar.css"
+import { useNavigate } from "react-router-dom"
 
 export default function Login() {
+const navigate = useNavigate()
 
-  function formulario(event){
+async function formulario(event){
+
     event.preventDefault()
-    const {password, email} = event.target
-    console.log(event.target.password.value)
+    const {contrasena, email} = event.target
+    try {      
+      const res = await axios.post("http://localhost:3001/auth/login", {email: email.value, contrasena: contrasena.value})
+      localStorage.setItem("token", res.data.token)
+      navigate("/")
+    } catch (error) {
+      alert("Credenciales incorrectas")
+    }
   }
 
   return (
@@ -39,7 +49,7 @@ export default function Login() {
                   type="password"
                   className="form-control"
                   placeholder="Password"
-                  name="password"
+                  name="contrasena"
                 />
                 <div className="input-group-append">
                   <div className="input-group-text">
