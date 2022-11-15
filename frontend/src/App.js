@@ -1,10 +1,10 @@
 import './App.css';
 import Home from './pages/admin/home';
 import {Routes, Route, Link} from "react-router-dom"
-import Login from './pages/auth/login';
 import PrivateRoute from './config/auth';
 import Admin from './pages/admin';
 import UpdateUsuario from './pages/admin/update-usuario';
+import Login from './pages/login';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         
         <Route path='usuario' element={<UpdateUsuario/>}/>
       </Route>  
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Login/>} />
     </Routes>
   );
 }

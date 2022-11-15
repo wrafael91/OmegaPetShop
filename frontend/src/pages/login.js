@@ -1,6 +1,5 @@
 import React from "react"
 import axios from "axios"
-import "../../shared/navbar.css"
 import { useNavigate } from "react-router-dom"
 
 export default function Login() {
@@ -23,7 +22,7 @@ async function formulario(event){
     <div className="login-page">
       <div className="login-box">
         <div className="card card-outline">
-          <div className="card-header text-center text-white colorfondonavbar">
+          <div style= {{backgroundColor: "#605ca7"}} className="card-header text-center text-white">
             <a href="#" className="h1 text-white">
               <b>OmegaPetShop</b>
             </a>
@@ -65,7 +64,7 @@ async function formulario(event){
                   </div>
                 </div>
                 <div className="col-4">
-                  <button type="submit" className="btn text-white btn-block colorfondonavbar">
+                  <button style= {{backgroundColor: "#605ca7"}} type="submit" className="btn text-white btn-block">
                     Ingresar
                   </button>
                 </div>
