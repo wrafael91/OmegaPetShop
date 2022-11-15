@@ -11,15 +11,15 @@ function App() {
     <Routes>
       {/* <Route path="" element={<PrivateRoute><Home/></PrivateRoute>} /> */}
       <Route 
-        path="/admin" 
+path="/admin" 
         element={<Admin />} 
       >
-        
         <Route path='usuario' element={<UpdateUsuario/>}/>
       </Route>  
-      <Route path="/login" element={<Login/>} />
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/home" element={<Home />} />
     </Routes>
   );
 }
-
 export default App;

@@ -9,7 +9,7 @@ export default function Navbar() {
           <i className="fas fa-bars" style={{color: "white"}}></i>
         </a>
         <li className="nav-item">
-          <a className="nav-link text-white">Inicio</a>
+          <a className="nav-link text-white" href="./home">Inicio</a>
         </li>
         <li className="nav-item">
           <a className="nav-link text-white">Producto</a>
